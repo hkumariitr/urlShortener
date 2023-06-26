@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModal");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookies = require("js-cookies");
+
 
 //@desc Register a user
 //@route POST /api/users/register
@@ -68,10 +68,8 @@ const loginUser = asyncHandler(async (req,res)=>{
         )
         console.log(accessToken)
         res.status(200).json({accessToken});
-        const token = accessToken
-        Cookies.set('token', token, { httpOnly: true });
+        
 
-        console.log("set token to cookies")
     } else{
         const error = "Invalid Credentials"
         res.status(401).json({error})

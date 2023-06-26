@@ -1,7 +1,8 @@
 
+import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Navbar from "./components/Navbar";
+import UrlHandler from "./components/UrlHandler";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 
@@ -10,9 +11,10 @@ function App() {
     <>
     <BrowserRouter>
         <Routes>
+          <Route path = "/" Component={LandingPage}/>
           <Route path = "/login" exact Component={Login}/>
           <Route path = "/register" exact Component={Register}/>
-          <Route path = "/url" exact Component={Navbar}/>
+          <Route path = "/url" exact Component={UrlHandler}/>
         </Routes>
      </BrowserRouter>
     </>

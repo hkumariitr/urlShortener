@@ -7,20 +7,20 @@ const asyncHandler = require("express-async-handler");
 //access public
 const createShortUrl = asyncHandler(async (req,res)=>{
     console.log("The request body is: ",req.body);
-    const {fullUrl,note} = req.body;
+    const {fullUrl,Note} = req.body;
     console.log(fullUrl);
-    console.log(note);
+    console.log(Note);
     if(!fullUrl){
         res.status(400);
         throw new Error("Provide fullUrl");
     }
     const shortUrl = await Url.create({
         full: fullUrl,
-        note: note,
+        note: Note,
         user_id: req.user.id
     })
-    res.status(201);
-    res.redirect("/");
+    res.status(201).json(shortUrl);
+    res.redirect("/url");
 });
 
 //@desc get all Urls

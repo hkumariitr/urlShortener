@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import "./Navbar.css";
+import "./UrlHandler.css";
 import {useNavigate} from "react-router-dom"
 
 
-const Navbar = ()=>{
+const UrlHandler = ()=>{
 
     const navigate = useNavigate();
 
@@ -51,6 +51,7 @@ const Navbar = ()=>{
             window.open(
                 response.data
               );
+            window.location.reload();
         })
         
         .catch((error) => console.log(error));
@@ -81,36 +82,12 @@ const Navbar = ()=>{
         setfullUrl(value);
     }
     
-    // const handleSubmit = async(e)=>{
-    //     const url = {fullUrl,Note}
-    //     console.log(url);
-    //     axios.post('/url', {
-    //         headers: {
-              
-    //           'Authorization': `Bearer ${token}`
-    //         },
-    //         body: JSON.stringify(url)
-    //       })
-    //     .then((response) => {
-    //         console.log(response);
-    //         if(response.error){
-    //             window.alert(response.error)
-    //             console.log(response.error)
-                
-    //         }
-    //         setshortUrls(response.data);
-    //         console.log(shortUrls);
-    //     })
-    //     .catch((error) => console.log(error));
     
-    
-    
-    // }
-
-
     const handleSubmit = async(e) => {
         console.log("submit accessed")
         try{
+            // const data = {fullUrl,Note}
+            // console.log(JSON.stringify(data))
         e.preventDefault();
         const data = {fullUrl,Note}
         console.log(data);
@@ -130,9 +107,9 @@ const Navbar = ()=>{
             window.alert(response.error)
             console.log(response.error)
         }else{
-            localStorage.setItem('token',response.accessToken)
-            window.alert("Posted Successfully")
             
+            window.alert("URL Shorten Successfully!")
+            window.location.href = "/url"
         }
     } catch(err){
         console.log(err);
@@ -146,24 +123,23 @@ const Navbar = ()=>{
         <div className="landing-container">
             <div className="navbar"> 
                 <div className="head"> Shorten URLs</div>
-                <div className="profile-section">
-                    <img alt = "profile-img" className="profile-img"/>
-                    <div className="profile-name"> Harshit </div>
-                </div>
+             
             </div>
         
 
             <div className="input-container">
                 <form action = "/url" className="input-form" method = "POST">
                 <input required type = "url" name = "fullUrl" id = "fullUrl" placeholder=" Paste your URL here" className="fullUrl" value = {fullUrl} onChange={handleUrl}/>
-                <button type="submit" className="inputbtn" onSubmit={handleSubmit}> Short it</button>
+                <div onClick={handleSubmit}> <button type="submit" className="inputbtn"> Short it</button> </div> 
+                </form>
+            </div>
                 <div className="note-container">
                 
                     <input type = "text" name = "note" id = "note" placeholder=" Add Note to your URL!" className="noteurl" value = {Note} onChange={handleNote}/>
                 
                 </div>
-                </form>
-            </div>
+                
+            
             <div className="search-container">
             <input type = "text" name = "query" placeholder=" Search here.." className="search" value = {query} onChange={(e)=>{ setQuery(e.target.value)}}/>
             </div>
@@ -205,4 +181,4 @@ const Navbar = ()=>{
     );
 }
 
-export default Navbar;
+export default UrlHandler;
