@@ -64,7 +64,7 @@ const Login = ()=>{
                     </div> 
 
                     <div className="links"> 
-                        <a href="#"></a> <a href="#">Signup</a> 
+                        <a href="#"></a> <a href="/register">Signup</a> 
                     </div> 
 
                     <div className="inputBox"> 

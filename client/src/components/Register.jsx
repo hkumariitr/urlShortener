@@ -61,7 +61,7 @@ const Register = ()=>{
                     </div> 
                     
                     <div className="links"> 
-                        <a href="#"></a> <a href="#">Login</a> 
+                        <a href="#"></a> <a href="Login">Login</a> 
                     </div> 
                     
                     <div className="inputBox"> 
